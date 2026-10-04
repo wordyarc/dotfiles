@@ -1,75 +1,70 @@
-#############################################################
-# ~/.Brewfile - Software Installs for MacOS                 #
-#                                                           #
-# List of packages to be installed / updated via Homebrew   #
-# Apps are sorted by category, and arranged alphabetically  #
-# Be sure to delete / comment out anything you do not need  #
-# Usage, run: $ brew bundle --global --file $HOME/.Brewfile #
-# See brew docs for more info: https://docs.brew.sh/Manpage #
-#############################################################
+# -- Taps --------------------------------------------------
+tap "anomalyco/tap"
+tap "dmtrkovalenko/fff", "https://github.com/dmtrKovalenko/homebrew-fff"
 
-# Taps
-tap 'homebrew/bundle'
-tap 'homebrew/core'
-tap 'homebrew/services'
+# -- Terminal ----------------------------------------------
+brew "atuin"
+brew "direnv"
+brew "fish"
+brew "fzf"
+brew "neovim"
+brew "tmux"
+brew "zoxide"
 
-#############################################################
-# Command Line                                              #
-#############################################################
+# -- Files & text ------------------------------------------
+brew "bat"
+brew "midnight-commander"
+brew "pandoc"
+brew "ripgrep"
+brew "tree"
+brew "yazi"
 
-# CLI Essentials
-brew 'fish'         # Interactive shell
-brew 'git'          # Version controll
+# -- System & network --------------------------------------
+brew "fastfetch"
+brew "gnupg"
+brew "htop"
+brew "openconnect"
 
-# CLI Basics
-brew 'atuin'        # Improved shell history for zsh, bash, fish and nushell
-brew 'bat'          # Output highlighting (better cat)
-brew 'cloc'         # Count lines of code
-brew 'direnv'       # Directory-specific environments
-brew 'neovim'       # Terminal text editor
-brew 'starship'     # Shell prompt
-brew 'tree'         # Directory listings as tree structure
-brew 'midnight-commander' # Terminal-based visual file manager
-brew 'zoxide'       # Smarter directory navigation
-brew 'fzf'          # Fuzzy finder
+# -- Git ---------------------------------------------------
+brew "gh"
+brew "git"
+brew "git-filter-repo"
+brew "git-lfs"
+brew "lazygit"
 
-# CLI Monitoring and Performance Apps
-brew 'ctop'         # Container metrics and monitoring
-brew 'htop'         # Resource monitoring
-brew 'glances'      # Resource monitor + web and API
-brew 'goaccess'     # Web log analyzer and viewer
+# -- Languages & runtimes ----------------------------------
+brew "dotnet"
+brew "go"
+brew "node"
+brew "openjdk"
+brew "python@3.14"
 
-# CLI Development Suits
-brew 'lazydocker'   # Full Docker management app
-brew 'lazygit'      # Full Git management app
-brew "docker-clean" # Clean Docker containers, images, networks, and volumes
+# -- Dev tools ---------------------------------------------
+brew "boost"
+brew "cloc"
+brew "cmake"
+brew "docker-clean"
+brew "gradle"
+brew "graphviz"
+brew "maven"
+brew "shellcheck"
+brew "uv"
 
-# CLI External Sercvices
-brew 'zsh-autosuggestions'
-brew 'zsh-history-substring-search'
-brew 'zsh-syntax-highlighting'
+# -- AI tooling --------------------------------------------
+cask "claude-code@latest"
+cask "codex"
+brew "dmtrkovalenko/fff/fff-mcp", trusted: true
+brew "herdr"
+brew "anomalyco/tap/opencode", trusted: true
+brew "openspec"
 
-#############################################################
-# Software Development                                      #
-#############################################################
+# -- Language packages -------------------------------------
+cargo "cargo-audit"
+cargo "sqlx-cli"
+uv "markitdown[all]"
 
-# Development Apps
-brew 'gradle'         # Build automation for Java
-brew 'maven'          # Build automation for Java
-brew 'graphviz'       # Graph visualization software from AT&T and Bell Labs
-
-# Development Langs, Compilers, Package Managers and SDKs
-brew 'go'             # Compiler for Go Lang
-brew 'node'           # Node.js
-brew 'openjdk'        # Java development kit
-brew 'dotnet'         # .NET Core
-
-
-#############################################################
-# AppStore apps                                             #
-#############################################################
-
-brew "mas"          # Mac App Store command-line interface
+# -- Mac App Store -----------------------------------------
+brew "mas"
 
 mas "Xcode", id: 497799835
 mas "AmneziaWG", id: 6478942365
@@ -93,5 +88,3 @@ mas "Microsoft PowerPoint", id: 462062816
 mas "Microsoft Word", id: 462054704
 
 mas "Yoink", id: 457622435
-
-# EOF
