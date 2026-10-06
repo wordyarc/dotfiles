@@ -1,23 +1,16 @@
 # Bootstrap
 
-Everything that is installed by hand, in setup order. Run `brew bundle` first.
+Run `./bootstrap.sh` first. It installs Homebrew and the `Brewfile`, applies the
+tracked configs (`install-config.sh`), oh-my-zsh, tpm with its plugins and the
+fisher plugins. It is safe to re-run; do so after installing rustup below, since
+the `cargo` entries in `Brewfile` need it.
 
-## Frameworks & toolchains
+Everything below is still installed by hand, in setup order.
+
+## Toolchains
 
 Run from a shell that already has these dotfiles applied: the configs export
-the install locations (`ZSH`, `SDKMAN_DIR`, `XDG_DATA_HOME`).
-
-**oh-my-zsh** — from zsh
-
-```sh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --keep-zshrc
-```
-
-**tpm** — then `prefix + I` to fetch plugins
-
-```sh
-git clone https://github.com/tmux-plugins/tpm "$XDG_DATA_HOME/tmux/plugins/tpm"
-```
+the install locations (`SDKMAN_DIR`, `VCPKG_ROOT`).
 
 **SDKMAN**
 
@@ -42,12 +35,6 @@ git clone https://github.com/microsoft/vcpkg.git "$VCPKG_ROOT"
 
 ```sh
 git clone -b stable https://github.com/flutter/flutter.git ~/develop/flutter
-```
-
-**fisher** — already tracked in `.config/fish/functions`, only plugins need fetching
-
-```sh
-fisher update
 ```
 
 ## Managed by their own installer
