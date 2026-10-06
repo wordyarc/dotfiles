@@ -38,6 +38,7 @@ brew "go"
 brew "node"
 brew "openjdk"
 brew "python@3.14"
+brew "rustup"
 
 # -- Dev tools ---------------------------------------------
 brew "boost"

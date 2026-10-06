@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 #
-# Set up a machine from this repository: Homebrew and the Brewfile, the tracked
-# configs, oh-my-zsh, tpm with its plugins and fisher plugins. Safe to re-run.
+# Set up a machine from this repository: Homebrew, rustup and the Brewfile, the
+# tracked configs, oh-my-zsh, tpm with its plugins and fisher plugins. Safe to
+# re-run.
 #
 # Usage: bootstrap.sh
 #
@@ -10,8 +11,7 @@
 set -euo pipefail
 
 usage() {
-  echo "usage: ${0##*/}" >&2
-  exit 2
+  echo "usage: ${0##*/}"
 }
 
 warn() {
@@ -31,13 +31,24 @@ install_homebrew() {
   eval "$(/opt/homebrew/bin/brew shellenv)"
 }
 
+# The cargo entries in Brewfile need the keg-only rustup proxies on PATH, else brew bundle installs the rust formula.
+install_rustup() {
+  local rustup_bin
+  rustup_bin=$(brew --prefix rustup)/bin
+
+  [[ -x $rustup_bin/rustup ]] || brew install rustup
+  export PATH=$rustup_bin:$PATH
+  rustup toolchain list | grep -q '^stable-' || rustup toolchain install stable
+  rustup default 2>/dev/null | grep -q '^stable-' || rustup default stable
+}
+
 install_packages() {
   export HOMEBREW_NO_ANALYTICS=1
-  brew bundle --file Brewfile || warn "some Brewfile entries failed to install"
+  brew bundle --file Brewfile
 }
 
 install_oh_my_zsh() {
-  local zsh_dir=$HOME/.config/.oh-my-zsh
+  local zsh_dir=$XDG_CONFIG_HOME/.oh-my-zsh
 
   [[ -d "$zsh_dir" ]] && return
   ZSH=$zsh_dir sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" \
@@ -59,8 +70,8 @@ install_fish_plugins() {
 
 for arg; do
   case $arg in
-    --help|-h) usage ;;
-    *) usage ;;
+    --help|-h) usage; exit 0 ;;
+    *) usage >&2; exit 2 ;;
   esac
 done
 
@@ -69,6 +80,7 @@ export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
 export XDG_DATA_HOME=${XDG_DATA_HOME:-$HOME/.local/share}
 
 if install_homebrew; then
+  install_rustup
   install_packages
 fi
 ./install-config.sh

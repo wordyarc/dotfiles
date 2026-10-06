@@ -23,9 +23,6 @@ export CODEX_HOME="$XDG_DATA_HOME/codex"
 export COPILOT_HOME="$XDG_DATA_HOME/copilot"
 # -- XDG End ---------------------------------------------------
 
-# Rust
-source "$HOME/.cargo/env"
-
 # sdkman
 export SDKMAN_DIR="$XDG_DATA_HOME/sdkman"
 [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
@@ -44,6 +41,8 @@ path=(
   "$HOMEBREW_PREFIX/opt/openjdk/bin"
   "$HOME/develop/flutter/bin"
   "$VCPKG_ROOT"
+  "$HOMEBREW_PREFIX/opt/rustup/bin"
+  "$HOME/.cargo/bin"
 
   $path
 

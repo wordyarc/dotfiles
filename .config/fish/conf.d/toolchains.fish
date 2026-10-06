@@ -24,6 +24,7 @@ set -a toolchain_paths \
     "$HOMEBREW_PREFIX/opt/openjdk/bin" \
     "$HOME/develop/flutter/bin" \
     "$VCPKG_ROOT" \
+    "$HOMEBREW_PREFIX/opt/rustup/bin" \
     "$HOME/.cargo/bin"
 
 fish_add_path --global --move --path $toolchain_paths

@@ -1,9 +1,9 @@
 # Bootstrap
 
-Run `./bootstrap.sh` first. It installs Homebrew and the `Brewfile`, applies the
-tracked configs (`install-config.sh`), oh-my-zsh, tpm with its plugins and the
-fisher plugins. It is safe to re-run; do so after installing rustup below, since
-the `cargo` entries in `Brewfile` need it.
+Run `./bootstrap.sh` first. It installs Homebrew, rustup with the stable
+toolchain and the `Brewfile`, applies the tracked configs (`install-config.sh`),
+oh-my-zsh, tpm with its plugins and the fisher plugins. It is safe to re-run.
+The `mas` entries in `Brewfile` need an App Store sign-in beforehand.
 
 Everything below is still installed by hand, in setup order.
 
@@ -16,12 +16,6 @@ the install locations (`SDKMAN_DIR`, `VCPKG_ROOT`).
 
 ```sh
 curl -s "https://get.sdkman.io?rcupdate=false" | bash
-```
-
-**rustup** — required by the `cargo` entries in `Brewfile`
-
-```sh
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
 **vcpkg**
