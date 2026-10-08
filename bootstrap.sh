@@ -40,6 +40,7 @@ install_rustup() {
   export PATH=$rustup_bin:$PATH
   rustup toolchain list | grep -q '^stable-' || rustup toolchain install stable
   rustup default 2>/dev/null | grep -q '^stable-' || rustup default stable
+  rustup component list --installed | grep -q '^rust-src' || rustup component add rust-src
 }
 
 install_packages() {
